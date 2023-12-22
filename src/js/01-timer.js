@@ -3,6 +3,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
@@ -43,10 +44,10 @@ function insertDataToControls(dateObj) {
     if (String(days).length > 3) {
       refs.timer.classList.add('timer-shift');
     }
-    refs.days.textContent = days;
-    refs.hours.textContent = hours;
-    refs.minutes.textContent = minutes;
-    refs.seconds.textContent = seconds;
+    refs.days.textContent =  String(days).padStart(2, "0");;
+    refs.hours.textContent =  String(hours).padStart(2, "0");
+    refs.minutes.textContent =  String(minutes).padStart(2, "0");
+    refs.seconds.textContent =  String(seconds).padStart(2, "0");
   } else {
     refs.timer.classList.remove('timer-shift');
     refs.days.textContent = '00';
@@ -56,9 +57,6 @@ function insertDataToControls(dateObj) {
   }
 }
 
-iziToast.show({
-  message: 'Please choose a date in the future',
-});
 
 const flatPickrOptions = {
   enableTime: true,
@@ -82,6 +80,7 @@ const flatPickrOptions = {
 };
 const instflatpickr = flatpickr('input#datetime-picker', flatPickrOptions);
 
+
 let userSelectedDate = null;
 const interval = 1000;
 let intervalId;
@@ -104,25 +103,6 @@ function updateTimer() {
   insertDataToControls(formattedValues);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function resetTimer() {
   userSelectedDate = new Date();
   intervalId && clearInterval(intervalId);
@@ -137,5 +117,5 @@ function resetTimer() {
 function changeControlsStatus() {
   refs.startBtn.disabled = !refs.startBtn.disabled;
   refs.picker.disabled = !refs.picker.disabled;
-  refs.stopBtn.disabled = !refs.stopBtn.disabled;
+  
 }

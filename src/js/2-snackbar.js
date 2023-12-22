@@ -40,9 +40,10 @@ function fulfill(delay) {
     closeOnEscape: true,
     close: true,
     icon: 'Icomoon',
-    iconUrl: `${icon2Url}`,
+    
     iconColor: '#fafafb',
-  }).show(); 
+  }); 
+  form.reset();
 }
 
 function reject(delay) {
@@ -55,7 +56,11 @@ function reject(delay) {
     closeOnEscape: false,
     close: true,
     icon: 'Icomoon',
-    iconUrl: `${icon1Url}`,
+   
     iconColor: '#fafafb',
-  }).show(); 
+  }); 
+  form.reset();
 }
+
+
+
